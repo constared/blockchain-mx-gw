@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # dfmx-template-nodejs:
+  #   container_name: nestjs_api_dev
+  #   # build: docker/nest
+  #   image: node:14.17.3-alpine
+  #   # env_file:
+  #   #   - .env
+  #   volumes:
+  #     - ./src:/usr/src/app
+  #   working_dir: /usr/src/app
+  #   command: sh -c "npm i && npx nodemon --config nodemon.json"
+  #   ports:
+  #     - 3000:3000
+
+  ganache:
+    image: trufflesuite/ganache-cli:latest
+    ports:
+      - "8545:8545"
+    entrypoint:
+      - node
+      - /app/ganache-core.docker.cli.js
+      - --deterministic
+      - --db=/ganache_data
+      # - --mnemonic
+      # - 'minimum symptom minute gloom tragic situate silver mechanic salad amused elite beef'
+      - --networkId
+      - '5777'
+      - --hostname
+      - '0.0.0.0'
+      # - --debug
+
+# networks:
+#   dfmx-network:
+#     external: true
